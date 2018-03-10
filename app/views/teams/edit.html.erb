@@ -1,0 +1,29 @@
+<form class="form-horizontal" method="post" action="/team/<%= @team.id %>/update">
+<input type="hidden" name="_method" value="patch">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<fieldset>
+<!-- Form Name -->
+<legend>Edit Your Team (Kind of, I mean  just the name)</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="team[name]">Change Name:</label>  
+  <div class="col-md-4">
+  <input id="team[name]" name="team[name]" type="text" placeholder="<%= @team.name  %>" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <input type="submit" value="Update Team!"class="btn btn-primary">
+  </div>
+</div>
+
+</fieldset>
+</form>
+<a href="/users/dashboard">User Dashboard</a>
+<a href="/messages/view">My Messages</a>
+<a href="/users/logout">Logout</a>

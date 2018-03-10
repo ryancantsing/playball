@@ -1,0 +1,42 @@
+// Place all the styles related to the Team controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#wrapper {
+    padding: 10px;
+}
+#scheduleDiv {
+    overflow: scroll;
+    display: inline-block;
+    height: 400px;
+}
+#bulletins {
+    display: inline-block;
+}
+#TeamInfoDiv {
+    display: inline-block;
+    height: 200px;
+}
+#otherplayersDiv {
+    display: inline-block;
+    height: 400px;
+    overflow: scroll;
+}
+#bulletinDiv {
+    overflow: scroll;
+    display: inline-block;
+    vertical-align: bottom;
+    width: 50%;
+    height: 200px;
+}
+#linkage1 {
+    border-right: solid 2px black;
+    padding-right: 3px;
+}
+#linkage2 {
+    border-right: solid 2px black;
+    padding-right: 3px;
+}
+#linkage {
+    margin-left: 39%;
+    display: inline-block;
+}

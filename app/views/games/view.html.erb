@@ -1,0 +1,35 @@
+<div id="wrapper">
+    <div class="row">
+    <div id="GameInfoDiv" class= "col-sm-6">
+        <div id="Info">
+            <h5>Home Team: <%= @team1.name %></h5>
+            <p>Coach: <%= @coach1.first_name %> <%= @coach1.last_name %></p>
+            <a href="/teams/<%= @team1.id %>/view">View Team Page</a>
+            <h5>Away Team: <%= @team2.name %></h5>
+            <p>Coach: <%= @coach2.first_name %> <%= @coach2.last_name %></p>
+            <a href="/teams/<%= @team2.id %>/view">View Team Page</a>
+        </div>
+        </div>
+        </div>
+    <div class="row">
+    <div id="homeTeamDiv" class="col-sm-4">
+    <h4>Home Team</h4>
+    <% @homeplayers.each do |homeplayer| %>
+    <a href="/players/<%= homeplayer.id %>/view"><%= homeplayer.user.first_name %></a><br>
+    <% end %>
+    </div>
+    <div id="awayTeamDiv" class="col-sm-4">
+    <h4>Away Team</h4>
+    <% @awayplayers.each do |awayplayer| %>
+    <a href="/players/<%= awayplayer.id %>/view"><%= awayplayer.user.first_name %></a><br>
+    <% end %>
+    </ul>
+    </div>
+    </div>
+    <div class= "row">
+        <a href="/users/dashboard">User Dashboard</a> 
+        <a href="/messages/view">My Messages</a> 
+        <a href="/users/logout">Logout</a>
+    </div>
+    </div>
+</div>

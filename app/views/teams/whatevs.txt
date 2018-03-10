@@ -1,0 +1,87 @@
+    <div class="col-sm-2">
+    <h4>Team Information</h4>
+    <div id="TeamInfoDiv">
+        <p>Name: <%= @team.name %></p>
+        <p>Sport: <%= @team.sport %></p>
+        <p>Number of active players <%= @team.players.count %></p>
+        <p>Record: N/A</p>
+        <a href="/players/new">Join this team!</a>
+        <%= button_to "Logout", "/users/logout", :method => "get" %>
+
+    </div>
+    </div>
+    <div class="row">
+    <div id="scheduleDiv" class="col-sm-4">
+    <h5>Schedule:</h5>
+        <% @home_games.each do |game| %>
+        <p> <%= game.away.name %></p>
+        <p>VS </p>
+        <p><%= game.home.name %></p>
+        <p><%= game.date.strftime("%m/%d/%Y") %></p>
+        <p><%= game.details%></p>
+        <% end %>
+        <% @away_games.each do |game| %>
+        <p> <%= game.away.name %></p>
+        <p>VS </p>
+        <p><%= game.home.name %></p>
+        <p><%= game.date.strftime("%m/%d/%Y") %></p>
+        <p><%= game.details %></p>
+        <% end %>
+    </div>
+    <div id="otherplayersDiv" class="col-sm-4">
+    <table>
+        <tr>
+            <th>Also on team:</th>
+            <th>Position</th>
+        </tr>
+    <% @players.each do |player| %>
+    <tr>
+    <td><a href="/players/<%= player.id %>/view"><%= player.user.first_name %> <%= player.user.last_name %> </td>
+    <td><%= player.position %> </td>
+    </tr>
+    <% end %>
+    </div>
+    </div>
+<div class="row">
+    <div id="bulletins">
+    <div id="bulletinDiv">
+    <h3>Bulletins</h3>
+    <% @bulletins.each do |bulletin| %>
+    <p><%= bulletin.user.first_name %>: <%= bulletin.content %> </p>
+    <% end %>
+    </div>
+    </div>
+<div id="bulletinForm">
+<form class="form-horizontal" action="/bulletins/create" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="hidden" name="bulletin[team_id]" value="<%= @team.id %>">
+
+<fieldset>
+
+<!-- Form Name -->
+<legend>Write Bulletin</legend>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="bulletin[content]">Write Bulletin</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="bulletin[content]" name="bulletin[content]"></textarea>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <input type="submit" value="Write Bulletin"class="btn btn-primary">
+  </div>
+</div>
+</fieldset>
+</form>
+</div>
+
+</div>
+    <a href="/users/dashboard">User Dashboard</a>
+    <a href="/messages/view">My Messages</a>
+    <a href="/users/logout">Logout</a>
+

@@ -1,0 +1,113 @@
+<%= image_tag("PB.PNG", width: '150px', height: '100px') %>
+<div class="container">
+<div class="col-sm-6">
+<form class="form-horizontal" action="/users/create?multipart=true" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+<fieldset>
+
+<!-- Form Name -->
+<legend>Register</legend>
+<!-- Text input-->
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label" for="user[first_name]">First Name</label>  
+  <div class="col-sm-10">
+  <input class="form-control" id="user[first_name]" name="user[first_name]" type="text" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label" for="user[last_name]">Last Name</label>  
+  <div class="col-sm-10">
+  <input class="form-control"id="user[last_name]" name="user[last_name]" type="text" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label" for="user[email]">Email</label>  
+  <div class="col-sm-10">
+  <input class="form-control" id="user[email]" name="user[email]" type="text" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label" for="user[image]">Add an Image</label>  
+  <div class="col-sm-10">
+  <input class="form-control" id="user[image]" name="user[image]" type="file" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+<!-- Password input-->
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label" for="user[password]">Password</label>
+  <div class="col-sm-10">
+    <input class="form-control" id="user[password]" name="user[password]" type="password" placeholder="" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label" for=""></label>
+  <div class="col-sm-10">
+    <input class="btn btn-primary" type="submit" value="Register!">
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div>
+<% if flash[:notice] %>
+  <% flash[:notice].each do |e| %>
+    <%= e %>
+    <% end %>
+<% end %>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |e| %>
+    <%= e %>
+    <% end %>
+<% end %>.
+<div class="col-sm-6">
+
+<form class="form-horizontal" action="/users/login" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+<fieldset>
+
+<!-- Form Name -->
+<legend>Login</legend>
+
+<!-- Text input-->
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label" for="user[email]">Email</label>  
+  <div class="col-sm-10">
+  <input id="user[email]" name="user[email]" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label" for="user[password]">Password</label>
+  <div class="col-sm-10">
+    <input id="user[password]" name="user[password]" type="password" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label" for="submit"></label>
+  <div class="col-sm-10">
+    <button id="submit" name="submit" class="btn btn-primary">Login</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div>
+</div>

@@ -1,0 +1,41 @@
+<form class="form-horizontal" method="post" action="/teams/create">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+<fieldset>
+
+<!-- Form Name -->
+<legend class="text-center">New Team!</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="team[name]">Team Name:</label>  
+  <div class="col-md-4">
+  <input id="team[name]" name="team[name]" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="team[sport]">Sport You're Playing</label>  
+  <div class="col-md-4">
+  <input id="team[sport]" name="team[sport]" type="text" placeholder="" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <input type="submit" class="btn btn-primary" value="Start Team!">
+  </div>
+</div>
+
+</fieldset>
+</form>
+<div id="linkage" class="text-center">
+<a id="linkage1" href="/users/dashboard">User Dashboard</a>
+<a id= "linkage2" href="/messages/view">My Messages</a>
+<a id= "linkage3" href="/users/logout">Logout</a>
+</div>

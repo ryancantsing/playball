@@ -1,0 +1,28 @@
+<form class="form-horizontal" action="/player/<%= @player.id %>/update" method="post">
+<input type="hidden" name="_method" value="patch">
+<input type="hidden" name="authenticity>_token" value="<%= form_authenticity_token %>">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Edit Positions</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="player[position]">Change Position(s)</label>  
+  <div class="col-md-4">
+  <input id="player[position]" name="player[position]" type="text" value="<%= @player.position %>" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="submit"></label>
+  <div class="col-md-4">
+    <input type="submit" value="Edit Player"class="btn btn-primary">
+  </div>
+</div>
+<a href="/players/<%= @player.id %>/delete">Delete Your Player</a>
+<a href="/users/dashboard">User Dashboard</a>
+<a href="/messages/view">My Messages</a>
+<a href="/users/logout">Logout</a>

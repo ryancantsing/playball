@@ -1,0 +1,29 @@
+<div id="wrapper">
+<a href="/users/dashboard">Back to Dashboard</a>
+<a href="/messages/view">My Messages</a>
+<a href="/users/logout">Logout</a>
+<div id="imageDiv">
+    <h1>PLACEHOLDER TEXT: LOL</h1>
+</div><br>
+<div id="playerInfoDiv">
+    <p>Team: <%= @player.team.name %></p>
+    <p>Position(s): <%= @player.position %></p>
+</div>
+<div class="button">
+<%= button_to "Send them a message", "/messages/#{@player.id}/new", :method => "get"%>
+</div>
+<div id="otherplayersDiv">
+    <h5>Other players on Team:</h5>
+    <table class="table table-bordered">
+        <tr>
+            <th>Also on team:</th>
+            <th>Position</th>
+        </tr>
+    <% @players.each do |player| %>
+    <tr>
+    <td><a href="/players/<%= player.id %>/view"><%= player.user.first_name %> <%= player.user.last_name %> </td>
+    <td><%= player.position %> </td>
+    </tr>
+    <% end %>
+</div>
+</div>

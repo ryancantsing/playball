@@ -1,0 +1,27 @@
+<form class="form-horizontal" action="/messages/create" method="post">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="hidden" name="message[recipient_id]" value="<%= @player.user.id %>">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Send a message to <%= @player.user.first_name %> </legend>
+
+<!-- Textarea -->
+<div class="form-group">
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="message[content]" name="message[content]">Be Nice About it, huh?</textarea>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <div class="col-md-4">
+    <input type="submit" value="Send Message"class="btn btn-primary">
+  </div>
+</div>
+
+</fieldset>
+</form>
+<a href="/users/dashboard">User Dashboard</a>
+<a href="/messages/view">My Messages</a>
+<a href="/users/logout">Logout</a>
