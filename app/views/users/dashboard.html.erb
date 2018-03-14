@@ -1,21 +1,25 @@
-<h1>Welcome, <%= @user.first_name %>! </h1>
 <div class="row">
-<h1 class="col-sm-6">THERE'S GOING TO BE AN IMAGE HERE. USE YOUR IMAGINATIONS I GUESS</h1>
-<div id="userPlayerDiv" class="col-sm-6">
-    <h3>Teams You're On:</h3>
+<h1 class="col-sm-4">Welcome, <%= @user.first_name %>! </h1>
+</div>
+<div class="row">
+<div id="picturediv" class="col-sm-4">
+<%= image_tag @user.image.url(:medium) %>
+</div>
+<div id="userPlayerDiv" class="col-sm-4">
+    <h3>Your Teams:</h3>
     <% @players.each do |player| %>
+    <div class="TeamDiv">
     <a href="/teams/<%= player.team_id %>/view"><%= player.team.name %></a>
     <p><%= player.team.sport %></p>
+    </div>
     <% end %>
 </div>
 </div>
 <div class="row">
-<div id="userButtonDiv">
-<div class="col-sm-6"><%= button_to "view messages", "/messages/view", :method => "get" %>
-<%= button_to "Edit Information", "/users/edit", :method => "get" %>
-<%= button_to "Join Team", "/players/new", :method => "get" %>
-<%= button_to "Start Team", "/teams/new", :method => "get" %>
-<%= button_to "Logout", "/users/logout", :method => "get" %>
-</div>
+<div class="col-sm-6" id="userButtonDiv">
+<a href="/messages/view" class="btn btn-primary">View Messages</a>
+<a class="btn btn-primary" href="/users/edit">Edit Information</a>
+<a  class="btn btn-primary" href="/players/new">Join a team</a>
+<a class="btn btn-primary" href="/teams/new">Start a Team</a>
 </div>
 </div>

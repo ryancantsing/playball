@@ -1,7 +1,6 @@
-<%= image_tag("PB.PNG", width: '150px', height: '100px') %>
 <div class="container">
 <div class="col-sm-6">
-<form class="form-horizontal" action="/users/create?multipart=true" method="post">
+<form class="form-horizontal" action="/users/create" enctype="multipart/form-data" method="post">
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
 <fieldset>

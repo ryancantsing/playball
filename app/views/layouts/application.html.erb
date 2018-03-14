@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="wrapper">
+<div class="row">
+<div class="col-sm-6" id="LogoDiv">
+<%= image_tag("PB.PNG", width: '150px', height: '100px') %>
+</div>
+<div class="col-sm-6" id="LogoutDiv">
+<% if session[:user_id] %>
+<a class="btn btn-primary" href="/users/logout" role="button">Logout</a>
+<% end %>
+</div>
+</div>
 
 <%= yield %>
-
+</div>
 </body>
 </html>
