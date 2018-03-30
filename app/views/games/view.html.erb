@@ -8,6 +8,26 @@
             <h5>Away Team: <%= @team2.name %></h5>
             <p>Coach: <%= @coach2.first_name %> <%= @coach2.last_name %></p>
             <a href="/teams/<%= @team2.id %>/view">View Team Page</a>
+            <% if @game.home_confirm == false && @game.away_confirm == false %>
+                <p> Game not confirmed by either team! </p>
+                <% if @team2.coach_id == session[:user_id] %>
+                    <a class="btn btn-primary" href="/games/<%= @game.id %>/awayconfirm">Confirm Game </a>
+                <% elsif @team1.coach_id == session[:user_id] %>
+                    <a class="btn btn-primary" href="/games/<%= @game.id %>/homeconfirm">Confirm Game </a>
+                <% end %>
+            <% elsif @game.home_confirm == true && @game.away_confirm == false %>
+                <p><%= @team2.name %> has not confirmed yet </p>
+                <% if @team2.coach_id == session[:user_id] %>
+                    <a class="btn btn-primary" href="/games/<%= @game.id %>/awayconfirm">Confirm Game </a>
+                <% end %>
+            <% elsif @game.home_confirm == false && @game.away_confirm == true %>
+                <p><%= @team1.name %> has not confirmed yet </p>
+                <% if @team1.coach_id == session[:user_id] %>
+                    <a class="btn btn-primary" href="/games/<%= @game.id %>/homeconfirm">Confirm Game </a>
+                <% end %>
+            <% else %>
+                <p> Game confirmed! </p>
+            <% end %>
         </div>
         </div>
         </div>
@@ -33,3 +53,4 @@
     </div>
     </div>
 </div>
+

@@ -38,3 +38,13 @@
 <a href="/users/dashboard">User Dashboard</a>
 <a href="/messages/view">My Messages</a>
 <a href="/users/logout">Logout</a>
+
+<form class="form-horizontal" method="post" action="/users/update">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="patch">
+  <label for="user[first_name]">First Name:</label>  
+  <input id="user[first_name]" name="user[first_name]" type="text" value="<%= @user.first_name %>"><br>
+  <label for="user[last_name]">Last Name:</label>  
+  <input id="user[last_name]" name="user[last_name]" type="text" value="<%= @user.last_name %>"><br>
+  <input type="submit" class="btn btn-primary" value="Update Info!">
+</form>

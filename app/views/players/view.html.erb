@@ -7,23 +7,55 @@
 </div><br>
 <div id="playerInfoDiv">
     <p>Team: <%= @player.team.name %></p>
-    <p>Position(s): <%= @player.position %></p>
-</div>
-<div class="button">
-<%= button_to "Send them a message", "/messages/#{@player.id}/new", :method => "get"%>
-</div>
-<div id="otherplayersDiv">
-    <h5>Other players on Team:</h5>
-    <table class="table table-bordered">
-        <tr>
-            <th>Also on team:</th>
-            <th>Position</th>
-        </tr>
-    <% @players.each do |player| %>
-    <tr>
-    <td><a href="/players/<%= player.id %>/view"><%= player.user.first_name %> <%= player.user.last_name %> </td>
-    <td><%= player.position %> </td>
-    </tr>
+    <% if session[:user_id] == @player.user_id %>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPlayerModal">Edit Position</button>
     <% end %>
+    <p>Position(s): <%= @player.position %></p>
+    <div class="button">
+    <%= button_to "Send them a message", "/messages/#{@player.id}/new", :method => "get"%>
+    </div>
+    <div id="otherplayersDiv">
+        <h5>Other players on Team:</h5>
+        <table class="table table-bordered">
+            <tr>
+                <th>Also on team:</th>
+                <th>Position</th>
+            </tr>
+        <% @players.each do |player| %>
+        <tr>
+        <td><a href="/players/<%= player.id %>/view"><%= player.user.first_name %> <%= player.user.last_name %> </td>
+        <td><%= player.position %> </td>
+        </tr>
+        <% end %>
+    </div>
+    </div>
+</div>
+<div class="modal fade" id="editPlayerModal">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Change Positions</h4>
+            </div>
+        <div class="modal-body">
+            <form action="/players/<%= @player.id %>/update" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="patch">
+            <label for="player[position]">Position(s):</label>
+            <select name="player[position]" id="player[position]">
+                <option value="P">P</option>
+                <option value="C">C</option>
+                <option value="1B">1B</option>
+                <option value="2B">2B</option>
+                <option value="3B">3B</option>
+                <option value="SS">SS</option>
+                <option value="OF">OF</option>
+            </select>
+            <input type="submit" value="Edit Player"class="btn btn-primary">
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+    </div>
 </div>
 </div>

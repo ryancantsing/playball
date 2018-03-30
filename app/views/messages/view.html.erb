@@ -1,37 +1,96 @@
+<div id="messageWrapper">
 <h1>My Messages</h1>
 <a href="/users/dashboard">Back to Dashboard</a>
 <a href="/users/logout">Logout</a>
-<div id="receivedMessages">
-<h3 class="text-left">Received Messages</h3>
-    <table class="table table-bordered table-striped">
-        <div class="row">
-        <tr>
-            <div class="col-sm-8"><th>user</th></div>
-            <div class="col-sm-8"><th>message</th></div>
-        </tr>
+
+<table class="table" id="receivedTable">
+    <tr>
+        <th class="col-sm-1">Sent by </th>
+        <th class="col-sm-1">Subject</th>
+        <th class="col-sm-1">Sent On</th>
+        <th class="col-sm-1">Action</th>
+        <th class="col-sm-1">Status</th>
+    </tr>
+    <% @received_messages.each do |message| %>
+    <tr>
+        <td><a href="/players/<%= message.sender.id %>/view"><%= message.sender.first_name %> <%= message.sender.last_name %></a></td>
+        <td><%= message.subject %></td>
+        <td><%= message.created_at.strftime("%m/%d/%Y") %></td>
+        <td><a href="#messageModal<%=message.id %>" role="button" class="btn btn-default" data-toggle="modal">View Message</a></td>
+        <div class="modal fade" id="messageModal<%= message.id %>">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>From: <%= message.sender.first_name %> <%= message.sender.last_name %></h4>
+                    <h2>Subject: <%= message.subject %></h2>
+                </div>
+                <div class="modal-body">
+                    <p><%= message.content %></p>
+                    <a href="/messages/<%= message.sender_id %>/new"  class="btn btn-default">Send a Message Back!</a>
+                </div>
+                <div class="modal-footer">
+                    <% if message.read == false %>
+                        <a href="/messages/<%= message.id %>/read" class="btn btn-default" type="button">Close</a>
+                    <% else %>
+                        <button class="btn btn-default" data-dismiss="modal">Close</button>
+                    <% end %>
+                </div>
+            </div>
+            </div>
         </div>
-        <% @received_messages.each do |message| %>
-        
-        <tr>
-            <div class="col-md"><td><%= message.sender.first_name %></td></div>
-            <div class="col-md"><td><%= message.content %></td></div>
-        </tr>
+        <td>
+            <% if message.read == true %>
+                Read
+            <% else %>
+                Unread
+            <% end %>
+        </td>
+    </tr>
         <% end %>
     </table>
-<h3>Sent Messages </h3>
-    <table class="table table-striped table-bordered">
-        <tr>
-            <th>user</th>
-            <th>message</th>
-        </tr>
-    
-        <% @sent_messages.each do |message| %>
-        <tr>
-            <td><%= message.recipient.first_name %></td>
-            <td><%= message.content %></td>
-        </tr>
+    <br>
+    <br>
+    <table class="table" id="sentTable">
+    <tr>
+        <th class="col-sm-1"> Sent to </th>
+        <th class="col-sm-1">Subject</th>
+        <th class="col-sm-1">Sent On</th>
+        <th class="col-sm-1">Action</th>
+        <th class="col-sm-1">Status</th>
+    </tr>
+    <% @sent_messages.each do |smessage| %>
+    <tr>
+        <td><%= smessage.recipient.first_name %> <%= smessage.recipient.last_name %></td>
+        <td><%= smessage.subject %></td>
+        <td><%= smessage.created_at.strftime("%m/%d/%Y") %></td>
+        <td><a href="#sentMessageModal<%=smessage.id %>" role="button" class="btn btn-default" data-toggle="modal">View Message</a></td>
+
+        <div class="modal fade" id="sentMessageModal<%= smessage.id %>">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4>To: <%= smessage.recipient.first_name %> <%= smessage.recipient.last_name %></h4>
+                <h2>Subject: <%= smessage.subject %></h2>
+                </div>
+                <div class="modal-body">
+                    <p><%= smessage.content %></p>
+                </div>
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+            </div>
+        </td>
+        <td>
+            <% if smessage.read == true %>
+                Read
+            <% else %>
+                Unread
+            <% end %>
+        </td>
+    </tr>
         <% end %>
     </table>
-</div>
-        <a href="/users/dashboard">User Dashboard</a>
-        <a href="/users/logout">Logout</a>
+    </div>
+

@@ -1,8 +1,8 @@
 class TeamsController < ApplicationController
   def create
     user_id = session[:user_id]
-    team = Team.create(coach_id: user_id, name: params['team'][:name], sport: params['team'][:sport])
-    redirect_to "/teams/#{team.id}/view"
+    @team = Team.create(coach_id: user_id, name: params['team'][:name], password: params['team'][:password])
+    redirect_to "/teams/#{@team.id}/view"
   end
 
   def new
@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
 
   def update
     team = Team.find(params[:id])
-    team.update(name: params[:name])
+    team.update(name: params['team'][:name])
     redirect_to "/teams/#{team.id}/view"
   end
 
@@ -20,10 +20,13 @@ class TeamsController < ApplicationController
   end
 
   def view
+    @id = params[:id]
+    @player = Player.find(session[:user_id])
+    @teams = Team.all
     @team = Team.find(params[:id])
-    @home_games = Game.where(home_id: @team.id)
-    @away_games = Game.where(away_id: @team.id)
-    @bulletins = Bulletin.where(team_id: @team.id)
+    games = Game.where("home_id = #{@id} or away_id = #{@id}").order(date: :asc)
+    @schedule = games.where(:home_confirm => true, :away_confirm => true)
+    @bulletins = Bulletin.where(team_id: @team.id).order(created_at: :desc)
     @players = @team.players
     render 'view'
   end

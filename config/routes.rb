@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'messages/:id/new' => 'messages#new'
 
+  get 'messages/:id/read' => 'messages#read'
+
   delete 'messages/delete' => 'messages#delete'
 
   post 'bulletins/create' => 'bulletins#create'
@@ -21,6 +23,10 @@ Rails.application.routes.draw do
 
   get 'games/:id/view' => 'games#view'
 
+  get 'games/:id/homeconfirm' => 'games#homeconfirm'
+
+  get 'games/:id/awayconfirm'=> 'games#awayconfirm'
+
   delete 'games/:id/delete' => 'games#delete'
 
   post 'teams/create' => 'teams#create'
@@ -33,7 +39,7 @@ Rails.application.routes.draw do
 
   get 'teams/:id/view' => 'teams#view'
 
-  get 'players/new' => 'players#new'
+  post 'players/new' => 'players#new'
 
   post 'players/create' => 'players#create'
 

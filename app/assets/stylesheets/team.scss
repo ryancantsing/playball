@@ -5,38 +5,59 @@
     padding: 10px;
 }
 #scheduleDiv {
-    overflow: scroll;
+    overflow: auto;
     display: inline-block;
-    height: 400px;
+    height: 300px;
+    
+    margin-left: 50px;
 }
-#bulletins {
-    display: inline-block;
-}
+
+
 #TeamInfoDiv {
     display: inline-block;
-    height: 200px;
+    height: 300px;
+    
+    font-size: 18px;
+    margin-left: 50px;
+    
+}
+#buttonDiv{
+    width: 100px;
+    height: 450px;
+    display: inline-block;
 }
 #otherplayersDiv {
     display: inline-block;
-    height: 400px;
-    overflow: scroll;
+    height: 300px;
+    overflow: auto;
+    margin-left: 50px;
+    
 }
 #bulletinDiv {
-    overflow: scroll;
+    overflow: auto;
     display: inline-block;
     vertical-align: bottom;
     width: 50%;
     height: 200px;
+
 }
+#logoutButton {
+    width: 125px;
+}
+
 #linkage1 {
-    border-right: solid 2px black;
     padding-right: 3px;
 }
 #linkage2 {
-    border-right: solid 2px black;
     padding-right: 3px;
 }
 #linkage {
     margin-left: 39%;
     display: inline-block;
+}
+#dashButton {
+    width: 125px;
+}
+#messageButton {
+    width: 125px;
 }

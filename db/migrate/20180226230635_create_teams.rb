@@ -3,7 +3,7 @@ class CreateTeams < ActiveRecord::Migration
     create_table :teams do |t|
       t.references :coach, index: true, foreign_key: true
       t.string :name
-      t.string :sport
+      t.string :password
       t.timestamps null: false
     end
   end

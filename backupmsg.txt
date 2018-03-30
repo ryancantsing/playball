@@ -1,0 +1,32 @@
+<div id="receivedMessages">
+<h3 class="text-left">Received Messages</h3>
+    <table class="table table-bordered table-striped table condensed">
+        <tr>
+            <div class="messageLocation"><th>Sent By</th></div>
+            <div class="messageContent"><th>Message</th></div>
+        </tr>
+        <% @received_messages.each do |message| %>
+        
+        <tr>
+            <div><td><%= message.sender.first_name %></td></div>
+            <div><td><%= message.content %></td></div>
+        </tr>
+        <% end %>
+    </table>
+</div>
+<h3>Sent Messages </h3>
+<div id="sentMessages">
+    <table class="table table-bordered table-striped table-condensed">
+        <tr>
+            <div class="messageLocation"><th>Sent To</th></div>
+            <div class="messageContent"><th>Message</th></div>
+        </tr>
+    
+        <% @sent_messages.each do |message| %>
+        <tr>
+            <td><%= message.recipient.first_name %></td>
+            <td><%= message.content %></td>
+        </tr>
+        <% end %>
+    </table>
+</div>

@@ -1,25 +1,125 @@
+<div id="dashboardWrapper">
 <div class="row">
 <h1 class="col-sm-4">Welcome, <%= @user.first_name %>! </h1>
 </div>
-<div class="row">
-<div id="picturediv" class="col-sm-4">
-<%= image_tag @user.image.url(:medium) %>
-</div>
+<div class="row" id="bigRow">
+        <div class="col-md-4" id="messageOptions">
+            <legend>Messages:</legend>
+            <p>You have <%= @new_messages.count %> Unread Messages</p>
+            <a id="messageButton" href="/messages/view" class="btn btn-default">View Messages</a>
+            <button id="editButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#mymodal">
+            Edit User Profile
+            </button>
+            <a id="logoutButton" href="/users/logout" class="btn btn-default">Logout</a>
+            <button id="aboutButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#aboutModal">About this App..</button>
+            <div class="modal fade" id="mymodal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Edit Your Profile</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" method="post" action="/users/update">
+                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                            <input type="hidden" name="_method" value="patch">
+                            <label for="user[first_name]">First Name:</label>  
+                            <input id="user[first_name]" name="user[first_name]" type="text" value="<%= @user.first_name %>"><br>
+                            <label for="user[last_name]">Last Name:</label>  
+                            <input id="user[last_name]" name="user[last_name]" type="text" value="<%= @user.last_name %>"><br>
+                            <input type="submit" class="btn btn-primary" value="Update Info!">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+                <div class="modal fade" id="aboutModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>About this App..</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>Hi guys!</p>
+                        <p>Welcome to my app! This is playball, a team management app in its infant stages. 
+                        I wanted to have a certain level of functionality before I deployed and here it is! I'm fairly proud of playball's capabilities.</p>
+                        <p>So far we have: 
+                        <ul>
+                            <li>User/Player/Game/Team models</li>
+                            <li>User to user messaging</li>
+                            <li>A robust team page</li>
+                            <li>Encryption, validation, all sorts of little goodies!</li>
+                        </ul></p>
+                        <p>I am looking forward to adding (and will soon!):
+                        <ul>
+                            <li>Photo Uploads</li>
+                            <li>Team Searches</li>
+                            <li>An expanded coach model</li>
+                            <li>League Model</li>
+                            <li>Live Game Tracking!</li>
+                            <li>Player/User Stat Tracking</li>
+                            <li>Other Sports (Soccer, Basketball, etc)!</li>
+                        </ul>
+                        </p>
+                        <p>Playball was made with Ruby on Rails, Bcrypt, Bootstrap, and PostgreSQL </p>
+
+                        <p>Thanks for Checking it out!</p>
+                        <p>-Ryan</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
 <div id="userPlayerDiv" class="col-sm-4">
-    <h3>Your Teams:</h3>
+    <legend>Your Teams:</legend>
     <% @players.each do |player| %>
     <div class="TeamDiv">
     <a href="/teams/<%= player.team_id %>/view"><%= player.team.name %></a>
-    <p><%= player.team.sport %></p>
+    <p>Position: <%= player.position %> </p>
+    <p>Next Game at: <%= Game.where("home_id = #{player.team_id} or away_id = #{player.team_id}").first.date.strftime("%m/%d/%Y") %></p>
     </div>
     <% end %>
 </div>
+    <div class="col-sm-4" id="buttonDiv">
+        <legend>Join A Team:</legend>
+        <% if flash[:errors] %>
+            <% flash[:errors].each do |e| %>
+                <%= e %>
+            <% end %>
+        <% end %>
+        <% @not_on_teams.each do |notonteam| %>
+        <div class="otherTeamDiv">
+            <p><a href="/teams/<%= Team.find(notonteam).id %>/view"><%= Team.find(notonteam).name %></a>    <a id="joinButton" href="#passwordPromptModal<%= Team.find(notonteam).id %>" class="btn btn-default" data-toggle="modal">Join this Team</a></p>
+            <div class="modal fade" id="passwordPromptModal<%= Team.find(notonteam).id %>">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Enter the Team Password: </h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/players/new" method="post">
+                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                            <input type="hidden" name="team[id]" value="<%= Team.find(notonteam).id %>">
+                            <input type="password" name="team[password]">
+                            <input type="submit" value="submit">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <%  end %>
+        <a id="startButton" class="btn btn-default" href="/teams/new">Start a Team</a>
+    </div>
 </div>
-<div class="row">
-<div class="col-sm-6" id="userButtonDiv">
-<a href="/messages/view" class="btn btn-primary">View Messages</a>
-<a class="btn btn-primary" href="/users/edit">Edit Information</a>
-<a  class="btn btn-primary" href="/players/new">Join a team</a>
-<a class="btn btn-primary" href="/teams/new">Start a Team</a>
-</div>
-</div>
+
+

@@ -2,13 +2,20 @@ class MessagesController < ApplicationController
   def create
     sender_id = session[:user_id]
     recipient_id = params['message'][:recipient_id]
-    message = Message.create(sender_id: sender_id, recipient_id: recipient_id, content: params['message'][:content])
+    message = Message.create(sender_id: sender_id, recipient_id: recipient_id, subject: params['message'][:subject], content: params['message'][:content])
     redirect_to '/messages/view'
   end
 
   def new
-    @player = Player.find(params[:id])
+    @user = User.find(params[:id])
     render 'new'
+  end
+
+  def read
+    message = Message.find(params[:id])
+    message.read = true
+    message.update(read: message.read)
+    redirect_to '/messages/view'
   end
 
   def view

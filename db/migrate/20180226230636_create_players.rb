@@ -4,7 +4,6 @@ class CreatePlayers < ActiveRecord::Migration
       t.references :user, index: true, foreign_key: true
       t.references :team, index: true, foreign_key: true
       t.string :position
-
       t.timestamps null: false
     end
   end

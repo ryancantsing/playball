@@ -1,0 +1,45 @@
+        <div class="col-md-4" id="buttonDiv">
+        <legend>Team Options</legend>
+            <a id="joinButton" class="btn btn-primary" href="/players/new">Join a team</a>
+            <a id="startButton" class="btn btn-primary" href="/teams/new">Start a Team</a>
+            <button id="editButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal">
+            Edit User Profile
+            </button>
+            <div class="modal fade" id="mymodal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Edit Your Profile</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" method="post" action="/users/update">
+                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                            <input type="hidden" name="_method" value="patch">
+                            <label for="user[first_name]">First Name:</label>  
+                            <input id="user[first_name]" name="user[first_name]" type="text" value="<%= @user.first_name %>"><br>
+                            <label for="user[last_name]">Last Name:</label>  
+                            <input id="user[last_name]" name="user[last_name]" type="text" value="<%= @user.last_name %>"><br>
+                            <input type="submit" class="btn btn-primary" value="Update Info!">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+        def unique_teams(session[:user_id])
+            @@teams = []
+            @user = User.find(session[:user_id])
+            @players = Player.where(user_id: @user.id)
+            @players.each do |player|
+                @notteams = player.where(team_id: player.team_id).pluck(:team_id).uniq
+                    @notteams.each do |notteam|
+                        @@teams.push(notteam)
+                    end
+                end
+            return @@teams.uniq
+        end

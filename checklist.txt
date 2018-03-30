@@ -1,0 +1,26 @@
+Application: Change Out Logo -- Done
+Move navigation Buttons -- Done
+Dashboard: Add Player Info to Your Teams Div --done
+Messages: Change from Tables to something more presentable, set by created_at descending. --Done
+Consider view messages modal. --done
+set password protection for joining teams.
+-search bar for teams
+-add join team div to dashboard --done
+-password Modal on dashboard --done
+Create query for not seeing teams you're already on --Done
+Games: Create Game form has error Messages
+Change Player View routes to team pages on messages page
+Add an "About this App" Modal
+Add more seed data
+create landing page
+fix routing buttons for the following pages:
+-messages
+-join team
+-start team
+
+Finish styling
+
+Be completely prepped for deployment
+
+
+

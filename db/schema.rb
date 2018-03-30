@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313004231) do
+ActiveRecord::Schema.define(version: 20180226231037) do
 
   create_table "bulletins", force: :cascade do |t|
     t.integer  "team_id"
@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 20180313004231) do
     t.integer  "home_id"
     t.integer  "away_id"
     t.datetime "date"
+    t.boolean  "away_confirm", default: false
+    t.boolean  "home_confirm", default: false
     t.text     "details"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "games", ["away_id"], name: "index_games_on_away_id"
@@ -39,9 +41,11 @@ ActiveRecord::Schema.define(version: 20180313004231) do
   create_table "messages", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
+    t.text     "subject"
     t.text     "content"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.boolean  "read",         default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id"
@@ -61,7 +65,7 @@ ActiveRecord::Schema.define(version: 20180313004231) do
   create_table "teams", force: :cascade do |t|
     t.integer  "coach_id"
     t.string   "name"
-    t.string   "sport"
+    t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,12 +77,8 @@ ActiveRecord::Schema.define(version: 20180313004231) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

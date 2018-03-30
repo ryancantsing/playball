@@ -1,14 +1,31 @@
 class GamesController < ApplicationController
   def create
-    user_id = session[:user_id]
-    game = Game.create(game_params)
-    redirect_to "/games/#{game.id}/view"
+    @redirect_team = params[:teamPageId]
+    @user_id = session[:user_id]
+    @game = Game.create(game_params)
+      if @game.valid? == true
+        redirect_to "/games/#{@game.id}/view"
+      else
+        redirect_to "/teams/#{@redirect_team}/view"
+    end
   end
 
   def update
     game = Game.find(params[:id])
     game.update(home_id: params[:home_id], away_id: params[:away_id], date: params[:date], details: params[:details])
     redirect_to "/games/#{game.id}/view"
+  end
+  def homeconfirm
+    game = Game.find(params[:id])
+    game.home_confirm = true
+    game.update(home_confirm: game.home_confirm)
+    redirect_to"/games/#{game.id}/view"
+  end
+  def awayconfirm
+    game = Game.find(params[:id])
+    game.away_confirm = true
+    game.update(away_confirm: game.away_confirm)
+    redirect_to"/games/#{game.id}/view"
   end
 
   def newgame

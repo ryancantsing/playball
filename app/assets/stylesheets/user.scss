@@ -1,17 +1,87 @@
 // Place all the styles related to the User controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#indexWrapper{
+    height: 600px;
+}
+#dashboardWrapper {
+    height: 600px;
+}
 #userPlayerDiv {
     overflow: auto;
-    height: 300px;
+    height: 500px;
+    margin-left: 50px;
 }
 .TeamDiv {
     width: 95%;
     margin: 2px;
-    background-color: rgba(255, 255, 255, 0.5); 
-    height: 20%;
+    height: 30%;
+    display: inline-block;
+    overflow: auto;
+    font-size: 25px;
+    border-bottom: 2px  solid #EBF4D2;
+
 }
-#userbuttondiv{
+.TeamDiv:hover{
+    background-color: white;
+    font-weight: bold;
+}
+#buttonDiv{
     width: 250px;
-    height: 50px
+    height: 350px;
+    overflow: auto;
+    margin-left: 100px;
+}
+.otherTeamDiv  {
+    border-bottom: 2px solid #EBF4D2;
+    margin-top: 5px;
+}
+.otherTeamDiv:hover{
+    background-color:#EBF4D2;
+    font-weight: bold;
+
+}
+#register {
+    color: #AA4549;
+    font-weight: bold;
+}
+#login {
+    color: #AA4549;
+    font-weight: bold;
+}
+#joinButton{
+    display: inline-block;
+    width: 125px;
+    padding-bottom: 10px;
+}
+#editButton {
+    display: inline-block;
+    width: 125px;
+}
+#startButton{
+    display: inline-block;
+    width: 125px;
+    margin-top: 10px;
+    
+}
+
+#messageOptions {
+    width: 290px;
+    font-size: 18px;
+    justify-content: center;
+    height: 175px;
+    margin-left: 50px;
+}
+#messageOptions:hover{
+    background-color: white;
+}
+#bigRow {
+    margin-top: 50px;
+
+}
+#joinButton{
+    margin-left: 10px;
+}
+#logoutButton {
+    margin-top: 3px;
 }

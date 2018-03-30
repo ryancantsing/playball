@@ -5,17 +5,18 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">
+    function form_submit(){
+      document.getElementById("message_form").submit();
+    }
+
+  </script>
 </head>
 <body>
 <div id="wrapper">
-<div class="row">
+<div class="row" id="topRow">
 <div class="col-sm-6" id="LogoDiv">
-<%= image_tag("PB.PNG", width: '150px', height: '100px') %>
-</div>
-<div class="col-sm-6" id="LogoutDiv">
-<% if session[:user_id] %>
-<a class="btn btn-primary" href="/users/logout" role="button">Logout</a>
-<% end %>
+<%= image_tag("snipsnap-2.png", width: '150px', height: '80px') %>
 </div>
 </div>
 

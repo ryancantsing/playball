@@ -1,7 +1,13 @@
 class PlayersController < ApplicationController
   def new
-    @teams = Team.all 
-    render 'new'
+    team = Team.find_by_id(params['team'][:id])
+    if team.password == params['team'][:password]
+      @team = Team.find_by_id(params['team'][:id])
+      render 'new'
+    else
+      flash[:errors] = ['Invalid Password']
+      redirect_to '/users/dashboard'
+    end
   end
 
   def create
@@ -17,8 +23,8 @@ class PlayersController < ApplicationController
 
   def update
     player = Player.find(params[:id])
-    player.update(params[:position])
-    redirect_to "players/#{player.id}/view"
+    player.update(position: params['player'][:position])
+    redirect_to "/players/#{player.id}/view"
   end
 
   def delete

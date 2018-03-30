@@ -1,6 +1,5 @@
 <form class="form-horizontal" method="post" action="/teams/create">
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-
 <fieldset>
 
 <!-- Form Name -->
@@ -17,9 +16,9 @@
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="team[sport]">Sport You're Playing</label>  
+  <label class="col-md-4 control-label" for="team[password]">Team Password</label>  
   <div class="col-md-4">
-  <input id="team[sport]" name="team[sport]" type="text" placeholder="" class="form-control input-md">
+  <input id="team[password]" name="team[password]" type="password" placeholder="" class="form-control input-md">
     
   </div>
 </div>
