@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     players = Player.where(user_id: @user.id).uniq.pluck(:team_id)
     @players = Player.where(user_id: @user.id)
     teams = Team.all.pluck(:id)
-    player = Player.find(session[:user_id])
     @not_on_teams = on_team(players, teams)
     received_messages = Message.where(recipient_id: @user.id)
     @new_messages = received_messages.where(read: false)

@@ -82,7 +82,6 @@
     <div class="TeamDiv">
     <a href="/teams/<%= player.team_id %>/view"><%= player.team.name %></a>
     <p>Position: <%= player.position %> </p>
-    <p>Next Game at: <%= Game.where("home_id = #{player.team_id} or away_id = #{player.team_id}").first.date.strftime("%m/%d/%Y") %></p>
     </div>
     <% end %>
 </div>

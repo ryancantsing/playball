@@ -1,7 +1,7 @@
 class Team < ActiveRecord::Base
   has_many :players
   has_many :users, through: :players 
-  has_one :coach, class_name: "User", foreign_key: 'coach_id'
+  has_one :coach, :class_name => "User"
   has_many :games
   validates :name, presence: true
   validates_length_of :name, :minimum => 5, :too_short => "Please Enter at least 5 Character for a team name"
