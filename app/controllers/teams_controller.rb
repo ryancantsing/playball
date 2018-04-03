@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
 
   def view
     @id = params[:id]
-    @player = Player.find(session[:user_id])
+    @player = Player.find(user_id: session[:user_id])
     @teams = Team.all
     @team = Team.find(params[:id])
     games = Game.where("home_id = #{@id} or away_id = #{@id}").order(date: :asc)
