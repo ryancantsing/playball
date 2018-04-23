@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   get 'teams/:id/view' => 'teams#view'
 
-  post 'players/new' => 'players#new'
+  get 'players/new/:id' => 'players#new'
 
   post 'players/create' => 'players#create'
 

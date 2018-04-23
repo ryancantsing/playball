@@ -7,7 +7,8 @@ class UsersController < ApplicationController
     players = Player.where(user_id: @user.id).uniq.pluck(:team_id)
     @players = Player.where(user_id: @user.id)
     teams = Team.all.pluck(:id)
-    @not_on_teams = on_team(players, teams)
+    not_on_teams = on_team(players, teams)
+    @potential_teams = join_teams(not_on_teams)
     received_messages = Message.where(recipient_id: @user.id)
     @new_messages = received_messages.where(read: false)
     
@@ -77,5 +78,13 @@ class UsersController < ApplicationController
     end
     return teams
   end
+  def join_teams(not_on_teams)
+    team_results = []
+    for i in 0..not_on_teams.length - 1
+      team_results.push(Team.find(not_on_teams[i]))
+    end
+    return team_results
+  end
+  
 
 end

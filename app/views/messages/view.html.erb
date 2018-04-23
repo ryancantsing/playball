@@ -1,9 +1,14 @@
 <div id="messageWrapper">
 <h1>My Messages</h1>
-<a href="/users/dashboard">Back to Dashboard</a>
-<a href="/users/logout">Logout</a>
+<a class="btn btn-default" href="/users/dashboard">Back to Dashboard</a>
+<a class="btn btn-default" href="/users/logout">Logout</a>
 
 <table class="table" id="receivedTable">
+    <thead>
+    <tr>
+    <legend>Inbox</legend>
+    </tr>
+    </thead>
     <tr>
         <th class="col-sm-1">Sent by </th>
         <th class="col-sm-1">Subject</th>
@@ -11,6 +16,7 @@
         <th class="col-sm-1">Action</th>
         <th class="col-sm-1">Status</th>
     </tr>
+    </thead>
     <% @received_messages.each do |message| %>
     <tr>
         <td><a href="/players/<%= message.sender.id %>/view"><%= message.sender.first_name %> <%= message.sender.last_name %></a></td>
@@ -51,6 +57,11 @@
     <br>
     <br>
     <table class="table" id="sentTable">
+    <thead>
+    <tr>
+    <legend>Sent Messages</legend>
+    </tr>
+    </thead>
     <tr>
         <th class="col-sm-1"> Sent to </th>
         <th class="col-sm-1">Subject</th>

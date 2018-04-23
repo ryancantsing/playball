@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -13,16 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20180226231037) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bulletins", force: :cascade do |t|
     t.integer  "team_id"
     t.integer  "user_id"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "bulletins", ["team_id"], name: "index_bulletins_on_team_id"
-  add_index "bulletins", ["user_id"], name: "index_bulletins_on_user_id"
 
   create_table "games", force: :cascade do |t|
     t.integer  "home_id"
@@ -35,50 +34,44 @@ ActiveRecord::Schema.define(version: 20180226231037) do
     t.datetime "updated_at",                   null: false
   end
 
-  add_index "games", ["away_id"], name: "index_games_on_away_id"
-  add_index "games", ["home_id"], name: "index_games_on_home_id"
-
   create_table "messages", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.text     "subject"
     t.text     "content"
     t.boolean  "read",         default: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id"
-  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id"
 
   create_table "players", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "team_id"
     t.string   "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "players", ["team_id"], name: "index_players_on_team_id"
-  add_index "players", ["user_id"], name: "index_players_on_user_id"
 
   create_table "teams", force: :cascade do |t|
-    t.integer  "coach_id"
+    t.integer  "user_id"
     t.string   "name"
     t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "teams", ["coach_id"], name: "index_teams_on_coach_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
+  add_foreign_key "bulletins", "teams"
+  add_foreign_key "bulletins", "users"
+  add_foreign_key "players", "teams"
+  add_foreign_key "players", "users"
+  add_foreign_key "teams", "users"
 end

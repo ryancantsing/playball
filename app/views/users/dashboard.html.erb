@@ -1,18 +1,4 @@
-<div id="dashboardWrapper">
-<div class="row">
-<h1 class="col-sm-4">Welcome, <%= @user.first_name %>! </h1>
-</div>
-<div class="row" id="bigRow">
-        <div class="col-md-4" id="messageOptions">
-            <legend>Messages:</legend>
-            <p>You have <%= @new_messages.count %> Unread Messages</p>
-            <a id="messageButton" href="/messages/view" class="btn btn-default">View Messages</a>
-            <button id="editButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#mymodal">
-            Edit User Profile
-            </button>
-            <a id="logoutButton" href="/users/logout" class="btn btn-default">Logout</a>
-            <button id="aboutButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#aboutModal">About this App..</button>
-            <div class="modal fade" id="mymodal">
+<div class="modal fade" id="mymodal">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -35,7 +21,7 @@
                 </div>
                 </div>
             </div>
-                <div class="modal fade" id="aboutModal">
+                            <div class="modal fade" id="aboutModal">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -74,6 +60,21 @@
                 </div>
                 </div>
             </div>
+<div id="dashboardWrapper">
+<div class="row">
+<h1 class="col-sm-4">Welcome, <%= @user.first_name %>! </h1>
+</div>
+<div class="row" id="bigRow">
+        <div class="col-md-4" id="messageOptions">
+            <legend>Messages:</legend>
+            <p>You have <%= @new_messages.count %> Unread Messages</p>
+            <a id="messageButton" href="/messages/view" class="btn btn-default">View Messages</a>
+            <button id="editButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#mymodal">
+            Edit User Profile
+            </button>
+            <a id="logoutButton" href="/users/logout" class="btn btn-default">Logout</a>
+            <button id="aboutButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#aboutModal">About this App..</button>
+
         </div>
         
 <div id="userPlayerDiv" class="col-sm-4">
@@ -87,37 +88,18 @@
 </div>
     <div class="col-sm-4" id="buttonDiv">
         <legend>Join A Team:</legend>
+        <a id="startButton" class="btn btn-default" href="/teams/new">Or Start a Team</a>
         <% if flash[:errors] %>
             <% flash[:errors].each do |e| %>
                 <%= e %>
             <% end %>
         <% end %>
-        <% @not_on_teams.each do |notonteam| %>
+        <% @potential_teams.each do |potential_team| %>
         <div class="otherTeamDiv">
-            <p><a href="/teams/<%= Team.find(notonteam).id %>/view"><%= Team.find(notonteam).name %></a>    <a id="joinButton" href="#passwordPromptModal<%= Team.find(notonteam).id %>" class="btn btn-default" data-toggle="modal">Join this Team</a></p>
-            <div class="modal fade" id="passwordPromptModal<%= Team.find(notonteam).id %>">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4>Enter the Team Password: </h4>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/players/new" method="post">
-                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-                            <input type="hidden" name="team[id]" value="<%= Team.find(notonteam).id %>">
-                            <input type="password" name="team[password]">
-                            <input type="submit" value="submit">
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p><a href="/teams/<%= potential_team.id %>/view"><%= potential_team.name %></a> 
+            <a id="joinButton" href="/players/new/<%= potential_team.id %>" class="btn btn-default" >Join this Team</a></p>
         </div> 
         <%  end %>
-        <a id="startButton" class="btn btn-default" href="/teams/new">Start a Team</a>
     </div>
 </div>
 

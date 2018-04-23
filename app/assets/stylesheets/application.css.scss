@@ -18,10 +18,17 @@
 * {
     color: #AA4549;
     max-height: 1200px;
+    
 }
  #wrapper{
 
-    background: linear-gradient(#FEFEFC, #A8CE3A)
+    background: #dcdcdc;
+    height: 100%;
+    background-image: url("Playballbackground.jpg");
+    background-size: 100% 100%;
+}
+#fieldDiv {
+    height: 700px;
 }
 
 

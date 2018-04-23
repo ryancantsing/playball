@@ -8,7 +8,7 @@ class BulletinsController < ApplicationController
 
   def delete
     bulletin = Bulletin.find(params[:id])
-    bulletin.delete
+    bulletin.delete()
     redirect_to 'users/dashboard'
   end
 end

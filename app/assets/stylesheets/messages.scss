@@ -2,11 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #messageWrapper {
-    height: 600px;
+    height: 700px;
+    width: 100%;
+    margin-left: 100px;
 }
 #receivedTable {
     overflow: auto;
+    height: 200px;
+    width: 85%;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 15px;
+    
 }
 #sentTable {
-    overflow: auto
+    overflow: auto;
+    height: 200px;
+    width: 85%;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 15px;
+    
 }

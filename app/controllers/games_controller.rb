@@ -50,10 +50,10 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @team1 = Team.find(@game.home_id)
     @homeplayers = @team1.players
-    @coach1 = User.find(@team1.coach_id)
+    @coach1 = User.find(@team1.user_id)
     @team2 = Team.find(@game.away_id)
     @awayplayers = @team2.players
-    @coach2 = User.find(@team2.coach_id)
+    @coach2 = User.find(@team2.user_id)
 
     render 'view'
   end

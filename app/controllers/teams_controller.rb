@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   def create
     user_id = session[:user_id]
-    @team = Team.create(coach_id: user_id, name: params['team'][:name], password: params['team'][:password])
+    @team = Team.create(user_id: user_id, name: params['team'][:name], password: params['team'][:password])
     redirect_to "/teams/#{@team.id}/view"
   end
 
@@ -21,7 +21,6 @@ class TeamsController < ApplicationController
 
   def view
     @id = params[:id]
-    @player = Player.find(user_id: session[:user_id])
     @teams = Team.all
     @team = Team.find(params[:id])
     games = Game.where("home_id = #{@id} or away_id = #{@id}").order(date: :asc)

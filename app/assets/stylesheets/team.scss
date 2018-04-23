@@ -10,6 +10,10 @@
     height: 300px;
     
     margin-left: 50px;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+
 }
 
 
@@ -19,26 +23,55 @@
     
     font-size: 18px;
     margin-left: 50px;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+
     
 }
 #buttonDiv{
     width: 100px;
     height: 450px;
     display: inline-block;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+
 }
 #otherplayersDiv {
     display: inline-block;
     height: 300px;
     overflow: auto;
     margin-left: 50px;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+
     
 }
 #bulletinDiv {
     overflow: auto;
     display: inline-block;
     vertical-align: bottom;
-    width: 50%;
+    width: 40%;
     height: 200px;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+    margin-left: 100px;
+    padding-top: 10px;
+
+
+}
+#bulletinForm{
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+    display: inline-block;
+    margin-left: 20px;
+    width: 40%;
+    height: 200px;
+    padding-top: 10px;
 
 }
 #logoutButton {
@@ -60,4 +93,7 @@
 }
 #messageButton {
     width: 125px;
+}
+#bulletinRow{
+    margin-top: 20px;
 }

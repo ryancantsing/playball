@@ -11,8 +11,8 @@
             <legend>Team Information</legend>
             <p>Name: <%= @team.name %></p>
             <p>Number of active players: <%= @team.players.count %></p>
-            <p> Coach: <%= User.find(@team.coach_id).first_name %> <%= User.find(@team.coach_id).last_name %></p>
-            <% if session[:user_id] == @team.coach_id %>
+            <p> Coach: <%= User.find(@team.user_id).first_name %> <%= User.find(@team.user_id).last_name %></p>
+            <% if session[:user_id] == @team.user_id %>
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#teamEditModal"> Edit Team Name</button>
             <% end %>
         <div class="modal fade" id="teamEditModal">
@@ -53,7 +53,7 @@
         <p><%= game.details%></p>
         </div>
         <% end %>
-        <% if session[:user_id] == @team.coach_id %>
+        <% if session[:user_id] == @team.user_id %>
             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newGameModal">Start New Event</button>
         <% end %>
     </div>
@@ -115,7 +115,7 @@
                             <h4>Change Positions</h4>
                             </div>
                         <div class="modal-body">
-                            <form action="/players/<%= @player.id %>/update" method="post">
+                            <form action="/players/<%= player.id %>/update" method="post">
                             <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                             <input type="hidden" name="_method" value="patch">
                             <label for="player[position]">Position(s):</label>
@@ -169,14 +169,14 @@
         </table>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="bulletinRow">
     <div id="bulletinDiv" class= "col-sm-4">
     <legend>Bulletins</legend>
     <% @bulletins.each do |bulletin| %>
     <p><%= bulletin.user.first_name %>: <%= bulletin.content %> </p>
     <% end %>
     </div>
-    <div id="bulletinForm">
+<div id="bulletinForm">
 <form class="form-horizontal" action="/bulletins/create" method="post">
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 <input type="hidden" name="bulletin[team_id]" value="<%= @team.id %>">

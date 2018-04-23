@@ -3,14 +3,20 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #indexWrapper{
     height: 600px;
+    margin-top: 50px;
 }
 #dashboardWrapper {
     height: 600px;
+    margin-left: 100px;
 }
 #userPlayerDiv {
     overflow: auto;
-    height: 500px;
+    height: 400px;
     margin-left: 50px;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+    padding-top: 10px;
 }
 .TeamDiv {
     width: 95%;
@@ -28,9 +34,14 @@
 }
 #buttonDiv{
     width: 250px;
-    height: 350px;
+    height: 400px;
     overflow: auto;
+    background-color: white;
     margin-left: 100px;
+    border-radius: 20px;
+    padding-top: 10px;
+    opacity: 0.8;
+    justify-content: center;
 }
 .otherTeamDiv  {
     border-bottom: 2px solid #EBF4D2;
@@ -69,12 +80,14 @@
     width: 290px;
     font-size: 18px;
     justify-content: center;
-    height: 175px;
+    height: 200px;
     margin-left: 50px;
-}
-#messageOptions:hover{
     background-color: white;
+    border-radius: 20px;
+    padding-top: 10px;
+    opacity: 0.8;
 }
+
 #bigRow {
     margin-top: 50px;
 
