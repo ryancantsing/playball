@@ -39,7 +39,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
-    autoprefixer-rails (8.3.0)
+    autoprefixer-rails (8.6.4)
       execjs
     bcrypt (3.1.11)
     binding_of_caller (0.8.0)
@@ -66,7 +66,7 @@ GEM
     execjs (2.7.0)
     faker (1.8.7)
       i18n (>= 0.7)
-    ffi (1.9.23)
+    ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.0.1)
@@ -94,7 +94,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     nio4r (2.3.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     paperclip (5.2.1)
       activemodel (>= 4.2.0)
@@ -104,7 +104,7 @@ GEM
       mimemagic (~> 0.3.0)
     pg (1.0.0)
     puma (3.11.4)
-    rack (2.0.4)
+    rack (2.0.5)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.7)
@@ -151,7 +151,7 @@ GEM
       rdoc (~> 4.0)
     spring (2.0.2)
       activesupport (>= 4.2)
-    sprockets (3.7.1)
+    sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.2.1)
@@ -182,7 +182,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
-  bootstrap-sass
+  bootstrap-sass (>= 3.3.7)
   byebug
   coffee-rails (~> 4.1.0)
   faker
@@ -192,7 +192,7 @@ DEPENDENCIES
   pg
   puma
   rails
-  sass-rails (~> 5.0)
+  sass-rails (~> 5.0, >= 5.0.7)
   sdoc (~> 0.4.0)
   spring
   turbolinks
