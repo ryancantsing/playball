@@ -9,7 +9,7 @@ group :production do
   gem 'pg'
 end
 
-gem 'puma'
+gem 'puma', '>= 4.3.8'
 
 gem 'faker'
 # Use SCSS for stylesheets
